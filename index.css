@@ -54,7 +54,7 @@
 }
 
 .diplayforecast {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 /* From Uiverse.io by OnlyCodeChannel */
 .searchBox {
@@ -323,6 +323,15 @@ button:active {
   }
 }
 
+.diplayforecast{
+
+  margin-bottom: 100px;
+}
+
+body{
+  padding-bottom: 100px;
+}
+
 .divdaysdisplay {
   margin: auto;
   background-color: rgba(255, 255, 255, 0.2); 
@@ -339,7 +348,7 @@ button:active {
 }
 
 .babro{
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   margin-top: 30px;
 }
 
