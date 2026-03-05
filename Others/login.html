@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./login.css">
+</head>
+
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="../Video/closdy.mp4" type="video/mp4">
+    </video>
+
+    <div class="content">
+
+    </div>
+
+
+    <div style="height:100vh; display:flex; justify-content:center; align-items:center;">
+
+        <div class="container">
+            <div class="heading">Sign In</div>
+            <form class="form" id="formCom">
+                <input placeholder="E-mail" id="email" name="email" type="email" class="input" required=""
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Enter a valid email address" />
+                <input placeholder="Password" id="password" name="password" type="password" class="input" required=""
+                    pattern="(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}"
+                    title="Password must be at least 8 characters with letters and numbers" />
+
+                <button type="submit" class="login-button">Sign In</button>
+            </form>
+
+            <div id="errorText" style="color:red; text-align:center; margin-top:10px;"></div>
+
+
+            <div class="auth-switch">
+                <span class="auth-text">No account yet?</span>
+                <a href="./signup.css" class="auth-link">Sign Up</a>
+            </div>
+
+        </div>
+        
+    </div>
+
+</body>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCpICikCx_YxbOSyHrnDFY6mh5imiavJCE",
+        authDomain: "fir-learn-8075a.firebaseapp.com",
+        projectId: "fir-learn-8075a",
+        storageBucket: "fir-learn-8075a.firebasestorage.app",
+        messagingSenderId: "814037799575",
+        appId: "1:814037799575:web:7a95a5dc4ce0e8cebecfd2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const formCom = document.getElementById('formCom');
+
+    formCom.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorText.innerHTML = '';
+
+        const formCom = document.getElementById('formCom');
+
+        const email = formCom.email.value;
+        const password = formCom.password.value;
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password)
+            console.log(userCredential);
+            window.location.href = '../index.html';
+
+        } catch (error) {
+            errorText.innerHTML = error.message.replace(/^Firebase:\s*/, '');
+        }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            console.log("User is Logged In", user);
+            window.location.href = '../index.html'
+        }
+        else {
+            console.log("No user is logged in");
+
+        }
+    })
+</script>
+
+</html>
