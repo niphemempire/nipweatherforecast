@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!city) return;
     getWeather(city);
     daysForecast(city);
+    localStorage.setItem("Location", city);
   }
 });
 
@@ -20,6 +21,7 @@ searchBtn.addEventListener("click", () => {
   if (!city) return;
   getWeather(city);
   daysForecast(city);
+  localStorage.setItem("Location", city);
 });
 
   const getWeather = async () => {
